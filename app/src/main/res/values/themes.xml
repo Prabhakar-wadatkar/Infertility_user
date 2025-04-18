@@ -1,9 +1,115 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Base Light Theme -->
     <style name="Base.Theme.Infertility" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Primary -->
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorOnPrimary">@color/onPrimary_light</item>
+        <item name="colorPrimaryContainer">@color/primary_container_light</item>
+        <item name="colorOnPrimaryContainer">@color/onPrimary_container_light</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="colorOnSecondary">@color/onSecondary_light</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_light</item>
+        <item name="colorOnSecondaryContainer">@color/onSecondary_container_light</item>
+
+        <!-- Tertiary -->
+        <item name="colorTertiary">@color/tertiary_light</item>
+        <item name="colorOnTertiary">@color/onTertiary_light</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container_light</item>
+        <item name="colorOnTertiaryContainer">@color/onTertiary_container_light</item>
+
+        <!-- Background / Surface (Optional but recommended) -->
+        <item name="colorOnBackground">@color/onBackground_light</item>
+        <item name="colorSurface">@color/surface_light</item>
+        <item name="colorOnSurface">@color/onSurface_light</item>
+        <item name="colorSurfaceInverse">@color/surface_Inverse_Light</item>
+        <item name="colorSurfaceBright">#F3F4F6</item>
+        <item name="colorSurfaceContainerLow">@color/color_surface_container_light</item>
+
+        <!-- Legacy -->
+        <item name="android:colorPrimaryDark">@color/color_primary_dark_light</item>
+
     </style>
 
+    <!-- Main Theme Entry -->
     <style name="Theme.Infertility" parent="Base.Theme.Infertility" />
+
+    <style name="linearLayoutForBodyShape">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_unselected</item>
+    </style>
+
+    <style name="imageViewForBodyShape">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">192dp</item>
+       <item name="android:scaleType">fitCenter</item>
+        <item name="contentDescription">body shape</item>
+    </style>
+
+    <style name="imageViewForFaceShape">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">182dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="contentDescription">body shape</item>
+    </style>
+
+    <style name="chipGroupStyle">
+        <item name="chipSpacingVertical">0dp</item>
+    </style>
+
+
+    <style name="linearLayoutForDropDown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:padding">6dp</item>
+    </style>
+
+
+    <style name="imageViewForDropDown">
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
+       <item name="tint">?attr/colorSurfaceInverse</item>
+        <item name="contentDescription">body shape</item>
+        <item name="android:layout_marginEnd">18dp</item>
+    </style>
+
+    <style name="textViewDropDown">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/amaranth</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="autoCompleteTextViewDropDown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/amaranth</item>
+        <item name="android:inputType">none</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="linearLayoutForDropDownHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:padding">6dp</item>
+    </style>
+
 </resources>

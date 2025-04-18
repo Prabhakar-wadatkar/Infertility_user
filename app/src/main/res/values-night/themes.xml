@@ -3,5 +3,29 @@
     <style name="Base.Theme.Infertility" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary -->
+        <item name="colorPrimary">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/onPrimary_dark</item>
+        <item name="colorPrimaryContainer">@color/primary_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/onPrimary_container_dark</item>
+
+        <!-- Secondary -->
+        <item name="colorSecondary">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/onSecondary_dark</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_dark</item>
+        <item name="colorOnSecondaryContainer">@color/onSecondary_container_dark</item>
+
+        <!-- Tertiary -->
+        <item name="colorTertiary">@color/tertiary_dark</item>
+        <item name="colorOnTertiary">@color/onTertiary_dark</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container_dark</item>
+        <item name="colorOnTertiaryContainer">@color/onTertiary_container_dark</item>
+
+        <!-- Background / Surface -->
+        <item name="colorOnBackground">@color/onBackground_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/onSurface_dark</item>
+        <item name="colorSurfaceInverse">@color/surface_Inverse_Dark</item>
+        <item name="colorSurfaceContainerLow">@color/color_surface_container_dark</item>
     </style>
 </resources>
