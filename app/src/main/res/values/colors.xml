@@ -2,4 +2,56 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primary_light">#E599FF</color>
+    <color name="onPrimary_light">#ffffff</color>
+    <color name="primary_container_light"> #F6E5FF</color>
+    <color name="onPrimary_container_light">#E599FF</color>
+    <color name="color_primary_dark_light">#BA2EE8</color>
+
+    <color name="secondary_light">#7fb5ad</color>
+    <color name="onSecondary_light">#ffffff</color>
+    <color name="secondary_container_light">#D3F8F3</color>
+    <color name="onSecondary_container_light">#7fb5ad</color>
+
+    <color name="tertiary_light">#7D46FF</color>
+    <color name="onTertiary_light">#ffffff</color>"
+    <color name="tertiary_container_light">#AD99DC</color>
+    <color name="onTertiary_container_light">#7f55e0</color>
+
+    <!-- Optional background/surface if you want -->
+    <color name="background_light">#FFFFFF</color>
+    <color name="onBackground_light">#171A1F</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="onSurface_light">#171A1F</color>
+
+    <color name="surface_Inverse_Light">#9095a0</color>
+
+    <!-- Primary Colors -->
+    <color name="primary_dark">#BA2EE8</color>
+    <color name="onPrimary_dark">#FFFFFF</color>
+    <color name="primary_container_dark">#4A0072</color>
+    <color name="onPrimary_container_dark">#F7E5FF</color>
+
+    <!-- Secondary Colors -->
+    <color name="secondary_dark">#60A199</color>
+    <color name="onSecondary_dark">#FFFFFF</color>
+    <color name="secondary_container_dark">#184F4A</color>
+    <color name="onSecondary_container_dark">#D3F8F3</color>
+
+    <!-- Tertiary Colors -->
+    <color name="tertiary_dark">#6F45D1</color>
+    <color name="onTertiary_dark">#FFFFFF</color>
+    <color name="tertiary_container_dark">#3D227C</color>
+    <color name="onTertiary_container_dark">#DCCEFF</color>
+
+    <!-- Background / Surface -->
+    <color name="background_dark">#121212</color>
+    <color name="onBackground_dark">#FFFFFF</color>
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="onSurface_dark">#FFFFFF</color>
+    <color name="surface_Inverse_Dark">#F6F3F3</color>
+    <color name="color_surface_container_light">#F8F9FA</color>
+    <color name="color_surface_container_dark">#1B1B1B</color>
+
 </resources>
