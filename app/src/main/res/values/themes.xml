@@ -32,10 +32,23 @@
         <!-- Legacy -->
         <item name="android:colorPrimaryDark">@color/color_primary_dark_light</item>
 
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="colorSurfaceVariant">@color/white</item>
+
+
+
+
     </style>
 
     <!-- Main Theme Entry -->
     <style name="Theme.Infertility" parent="Base.Theme.Infertility" />
+
+    <style name="Shape.Fab.Round" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">50%</item>
+    </style>
+
 
     <style name="linearLayoutForBodyShape">
         <item name="android:layout_width">wrap_content</item>
