@@ -7,7 +7,6 @@
     android:padding="16dp"
     tools:context=".LoginModule.SignInWithPhoneNumber">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewBackButton"
         android:layout_width="wrap_content"
@@ -32,11 +31,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_clear_24"
                 app:tint="?attr/colorOnSurface" />
-
-
         </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
@@ -77,25 +72,25 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@drawable/edittext_back"
-                android:fontFamily="@font/amaranth"
-                android:hint="@string/_91_phone_number"
-                android:inputType="phone"
-                android:padding="12dp"
-                android:singleLine="true"
-                android:textSize="16sp" />
+                android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/edittext_back"
+            android:fontFamily="@font/amaranth"
+            android:hint="@string/_91_phone_number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:background="?selectableItemBackground"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/amaranth"
@@ -109,7 +104,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <com.google.android.material.button.MaterialButton
-        style="@style/Widget.Material3.Button"
         android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -122,6 +116,4 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
