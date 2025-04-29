@@ -56,8 +56,6 @@
             android:text="@string/skip"
             android:textColor="?attr/colorOnSurface"
             android:textSize="14sp" />
-
-
     </LinearLayout>
 
     <View
@@ -74,10 +72,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/view">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -144,7 +140,6 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:focusable="true"
-                android:visibility="visible"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -180,16 +175,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:gravity="center"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:gravity="center">
 
                         <LinearLayout
                             android:id="@+id/hourglass"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForBodyShape"
                                 android:src="@drawable/hourglass_shaped" />
@@ -198,7 +188,6 @@
                         <LinearLayout
                             android:id="@+id/round"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForBodyShape"
                                 android:src="@drawable/round" />
@@ -207,7 +196,6 @@
                         <LinearLayout
                             android:id="@+id/triangle_down"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForBodyShape"
                                 android:src="@drawable/triangle_down" />
@@ -216,7 +204,6 @@
                         <LinearLayout
                             android:id="@+id/triangle_up"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForBodyShape"
                                 android:src="@drawable/triangle_up" />
@@ -225,17 +212,12 @@
                         <LinearLayout
                             android:id="@+id/rectangle"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForBodyShape"
                                 android:src="@drawable/square" />
                         </LinearLayout>
-
-
                     </LinearLayout>
                 </LinearLayout>
-
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -246,7 +228,6 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:focusable="true"
-                android:visibility="visible"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -282,16 +263,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:gravity="center"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:gravity="center">
 
                         <LinearLayout
                             android:id="@+id/oval"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForFaceShape"
                                 android:src="@drawable/oval_face" />
@@ -300,7 +276,6 @@
                         <LinearLayout
                             android:id="@+id/triangle"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForFaceShape"
                                 android:src="@drawable/triangle_face" />
@@ -309,7 +284,6 @@
                         <LinearLayout
                             android:id="@+id/circle"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForFaceShape"
                                 android:src="@drawable/round_face" />
@@ -318,17 +292,12 @@
                         <LinearLayout
                             android:id="@+id/square"
                             style="@style/linearLayoutForBodyShape">
-
                             <ImageView
                                 style="@style/imageViewForFaceShape"
                                 android:src="@drawable/square_face" />
                         </LinearLayout>
-
-
                     </LinearLayout>
                 </LinearLayout>
-
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -367,13 +336,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         app:chipSpacingHorizontal="8dp"
-                        app:chipSpacingVertical="-12dp">
-
-                    </com.google.android.material.chip.ChipGroup>
-
+                        app:chipSpacingVertical="-12dp" />
                 </LinearLayout>
-
-
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -523,7 +487,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -572,6 +535,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_height"
                             style="@style/autoCompleteTextViewDropDown"
                             android:text="@string/height" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -595,6 +559,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_weight"
                             style="@style/autoCompleteTextViewDropDown"
                             android:text="@string/weight" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -629,6 +594,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_drinking"
                             style="@style/autoCompleteTextViewDropDown"
                             android:text="@string/drinking" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -652,6 +618,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_smoking"
                             style="@style/autoCompleteTextViewDropDown"
                             android:text="@string/smoking" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -686,6 +653,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_food_habit"
                             style="@style/autoCompleteTextViewDropDown"
                             android:text="@string/food_habit" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -709,6 +677,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_relationship"
                             style="@style/autoCompleteTextViewDropDown"
                             android:text="Relationship" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -730,9 +699,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout20" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

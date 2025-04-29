@@ -29,9 +29,8 @@ import java.util.Map;
 
 public class PersonalInfoFragment extends Fragment {
     private TextInputEditText nameInput, phoneInput, emailInput, passwordInput, confirmPasswordInput;
-    private CardView cardViewBirthDayDate;
-    private com.google.android.material.textfield.TextInputLayout nameLayout,phoneLayout,emailLayout,passwordLayout,confirmPasswordLayout;
     private androidx.appcompat.widget.AppCompatTextView txtDay, txtMonth, txtYear;
+    private CardView cardViewBirthDayDate;
     private Calendar calendar;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -58,11 +57,6 @@ public class PersonalInfoFragment extends Fragment {
         txtMonth = rootView.findViewById(R.id.txtMonth);
         txtYear = rootView.findViewById(R.id.txtYear);
         cardViewBirthDayDate = rootView.findViewById(R.id.cardViewBirthdayDate);
-        nameLayout = rootView.findViewById(R.id.nameLayout);
-        phoneLayout = rootView.findViewById(R.id.phoneLayout);
-        emailLayout = rootView.findViewById(R.id.emailLayout);
-        passwordLayout = rootView.findViewById(R.id.passwordLayout);
-        confirmPasswordLayout = rootView.findViewById(R.id.confirmPasswordLayout);
         MaterialButton btnSaveChanges = rootView.findViewById(R.id.btnSaveChanges);
 
         // Set current date
@@ -109,39 +103,24 @@ public class PersonalInfoFragment extends Fragment {
 
         // Validation
         if (name.isEmpty()) {
-            nameLayout.setError("Name is required");
+            nameInput.setError("Name is required");
             return;
-        }
-        else{
-            nameLayout.setError(null);
         }
         if (phone.isEmpty() || !phone.matches("\\+\\d{10,12}")) {
-            phoneLayout.setError("Valid phone number is required");
+            phoneInput.setError("Valid phone number is required");
             return;
-        }
-        else{
-            phoneLayout.setError(null);
         }
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailLayout.setError("Valid email is required");
+            emailInput.setError("Valid email is required");
             return;
-        }
-        else{
-            emailLayout.setError(null);
         }
         if (password.isEmpty() || password.length() < 6) {
-            passwordLayout.setError("Password must be at least 6 characters");
+            passwordInput.setError("Password must be at least 6 characters");
             return;
-        }
-        else{
-            passwordLayout.setError(null);
         }
         if (!password.equals(confirmPassword)) {
-            confirmPasswordLayout.setError("Passwords do not match");
+            confirmPasswordInput.setError("Passwords do not match");
             return;
-        }
-        else{
-            confirmPasswordLayout.setError(null);
         }
 
         // Save to Firebase
@@ -155,11 +134,24 @@ public class PersonalInfoFragment extends Fragment {
         userData.put("name", name);
         userData.put("phone", phone);
         userData.put("email", email);
+        userData.put("password", password); // Storing password (not recommended)
         userData.put("birthday", birthday);
 
         mDatabase.child("users").child(user.getUid()).setValue(userData)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(requireContext(), "Profile saved successfully", Toast.LENGTH_SHORT).show();
+
+                    // Optional: Update Firebase Authentication password (recommended)
+                    /*
+                    user.updatePassword(password)
+                            .addOnSuccessListener(aVoid1 -> {
+                                Toast.makeText(requireContext(), "Password updated in Firebase Auth", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(requireContext(), "Failed to update password: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            });
+                    */
+
                     // Navigate to PhysicalInfoFragment
                     Utility.replaceFragment(getParentFragmentManager(), R.id.container_for_profile_screen, new PhysicalInfoFragment(), true);
                 })

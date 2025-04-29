@@ -14,7 +14,8 @@
         tools:targetApi="31">
         <activity
             android:name=".ProfileSetupModule.ProfileSetupActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".LoginModule.LoginActivity"
             android:exported="true">

@@ -66,21 +66,17 @@ public class Number_Otp_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_number__otp, container, false);
 
-        // Back button
         CardView cardViewBackButtonOtp = rootView.findViewById(R.id.cardViewBackButtonOtp);
         cardViewBackButtonOtp.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
 
-        // OTP input
         OtpTextView otpView = rootView.findViewById(R.id.otpView);
         btnSubmit = rootView.findViewById(R.id.btnSubmitOtp);
 
-        // Update phone number display
         TextView phoneNumberTextView = rootView.findViewById(R.id.phoneNumberTextView);
         if (phoneNumber != null) {
             phoneNumberTextView.setText(getString(R.string.enter_the_code_we_sent_to, phoneNumber));
         }
 
-        // Start OTP countdown
         TextView expiryTextView = rootView.findViewById(R.id.textView4);
         startOtpCountdown(expiryTextView);
 
@@ -94,7 +90,6 @@ public class Number_Otp_Fragment extends Fragment {
             verifyOtp(otp);
         });
 
-        // Resend OTP
         rootView.findViewById(R.id.textView2).setOnClickListener(v -> {
             resendOtp();
             startOtpCountdown(expiryTextView);
@@ -109,6 +104,11 @@ public class Number_Otp_Fragment extends Fragment {
             btnSubmit.setEnabled(true);
             return;
         }
+        if (getActivity() == null) {
+            Toast.makeText(requireContext(), "Activity context is null", Toast.LENGTH_SHORT).show();
+            btnSubmit.setEnabled(true);
+            return;
+        }
 
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp);
         mAuth.signInWithCredential(credential)
@@ -117,6 +117,7 @@ public class Number_Otp_Fragment extends Fragment {
                     if (task.isSuccessful()) {
                         try {
                             Intent intent = new Intent(getActivity(), ProfileSetupActivity.class);
+                            intent.putExtra("phoneNumber", phoneNumber); // Pass phone number
                             startActivity(intent);
                             getActivity().finish();
                         } catch (Exception e) {
@@ -171,6 +172,7 @@ public class Number_Otp_Fragment extends Fragment {
                     if (task.isSuccessful()) {
                         try {
                             Intent intent = new Intent(getActivity(), ProfileSetupActivity.class);
+                            intent.putExtra("phoneNumber", phoneNumber);
                             startActivity(intent);
                             getActivity().finish();
                         } catch (Exception e) {
