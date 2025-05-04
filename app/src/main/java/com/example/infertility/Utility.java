@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -63,6 +65,13 @@ public class Utility {
         chipGroup.addView(chip);
     }
 
+    public static void addChipsForQuestions(Context context, String text, ChipGroup chipGroup) {
+        Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.chip_item_questions, null);
+        chip.setId(new Random().nextInt());
+        chip.setText(text);
+        chipGroup.addView(chip);
+    }
+
     public static void setUpDropdown(Context context, AutoCompleteTextView dropdown ,String[] options, OnDropdownItemSelectedListener listener) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, options);
         dropdown.setAdapter(adapter);
@@ -92,6 +101,13 @@ public class Utility {
         return selectedOptions;
     }
 
+    public static void addRadioButton(String text, RadioGroup radioGroup) {
+        RadioButton radioButton = (RadioButton) LayoutInflater.from(radioGroup.getContext()).inflate(R.layout.radio_button_item, null);
+        radioButton.setId(new Random().nextInt());
+        radioButton.setText(text);
+        radioGroup.addView(radioButton);
+    }
+
     public interface ShapeSelectionListener {
         void onShapeSelected(String shape);
     }
@@ -99,5 +115,6 @@ public class Utility {
     public interface OnDropdownItemSelectedListener {
         void onItemSelected(String selectedItem);
     }
+
 
 }

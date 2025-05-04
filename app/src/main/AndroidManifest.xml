@@ -13,22 +13,27 @@
         android:theme="@style/Theme.Infertility"
         tools:targetApi="31">
         <activity
+            android:name=".PCOSQuestionModule.PcosQuestionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PeriodQuestionModule.PeriodQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileSetupModule.ProfileSetupActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".LoginModule.LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".MainModule.MainActivity"
-            android:exported="false" />
+            android:exported="false"/>
     </application>
 
 </manifest>
