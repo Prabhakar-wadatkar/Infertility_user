@@ -2,6 +2,7 @@ package com.example.infertility.MainModule;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.example.infertility.ItemModels.DiscussionItem;
 import com.example.infertility.ItemModels.ProductItem;
 import com.example.infertility.ItemModels.PublishItem;
 import com.example.infertility.R;
+import com.example.infertility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,6 +134,30 @@ public class HomeFragment extends Fragment {
         PublishAdapter publishAdapter = new PublishAdapter(getContext(), publishList);
         publishRecyclerView.setAdapter(publishAdapter);
         publishAdapter.notifyDataSetChanged();
+
+        CardView cardViewTrackPeriod = rootView.findViewById(R.id.cardViewTrackPeriod);
+        cardViewTrackPeriod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utility.replaceFragment(getParentFragmentManager(), R.id.container_for_home_screen, new MenstrualManagementFragment(), true);
+            }
+        });
+
+        CardView cardViewTrackActivity = rootView.findViewById(R.id.cardViewTrackActivity);
+        cardViewTrackActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utility.replaceFragment(getParentFragmentManager(), R.id.container_for_home_screen, new StepsTrackerFragment(), true);
+            }
+        });
+
+        CardView cardViewTrackNutrition = rootView.findViewById(R.id.cardViewTrackNutrition);
+        cardViewTrackNutrition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utility.replaceFragment(getParentFragmentManager(), R.id.container_for_home_screen, new NutritionTrackerFragment(), true);
+            }
+        });
 
 
 

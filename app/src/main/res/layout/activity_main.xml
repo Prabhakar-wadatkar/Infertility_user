@@ -35,7 +35,8 @@
             app:itemIconTint="?attr/colorOnSecondary"
             app:itemIconSize="32dp"
             app:itemTextColor="?attr/colorOnSecondary"
-            app:labelVisibilityMode="unlabeled" />
+            app:labelVisibilityMode="unlabeled"
+            android:layout_gravity="center"/>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -43,14 +44,16 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/smiley_face"
         android:src="@drawable/smile"
+        app:backgroundTint="?attr/colorSecondary"
         app:fabSize="normal"
         app:layout_anchor="@id/bottomAppBar"
         app:layout_anchorGravity="center"
-        app:backgroundTint="?attr/colorSecondary"
-        app:tint="?attr/colorOnSecondary"
+        app:maxImageSize="42dp"
         app:shapeAppearanceOverlay="@style/Shape.Fab.Round"
-        app:maxImageSize="42dp"/>
+        app:tint="?attr/colorOnSecondary"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 

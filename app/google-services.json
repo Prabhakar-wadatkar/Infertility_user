@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "505389666821",
+    "firebase_url": "https://infertility-31b1c-default-rtdb.firebaseio.com",
+    "project_id": "infertility-31b1c",
+    "storage_bucket": "infertility-31b1c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505389666821:android:9850216990aeee75df426c",
+        "android_client_info": {
+          "package_name": "com.example.infertility"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZUOh2K2ZXhGtHo0vLNvHeyICAe55pZxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

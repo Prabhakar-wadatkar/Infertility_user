@@ -42,7 +42,7 @@
             android:layout_height="185dp"
             android:contentDescription="@string/random_image"
             android:scaleType="centerInside"
-            android:src="@drawable/skech_girl" />
+            android:src="@drawable/sketch_girl" />
 
         <LinearLayout
             android:layout_width="0dp"
