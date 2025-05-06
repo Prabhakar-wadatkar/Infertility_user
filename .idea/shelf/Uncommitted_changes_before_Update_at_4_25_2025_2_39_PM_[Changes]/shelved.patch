@@ -1,0 +1,27 @@
+Index: app/src/main/java/com/example/infertility/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.infertility;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_main);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/com/example/infertility/MainActivity.java b/app/src/main/java/com/example/infertility/MainActivity.java
+--- a/app/src/main/java/com/example/infertility/MainActivity.java	(revision d1ad8068d4b1f6de617ac382e02e09048e6b6042)
++++ b/app/src/main/java/com/example/infertility/MainActivity.java	(date 1745213367427)
+@@ -1,6 +1,8 @@
+ package com.example.infertility;
+ 
+ import android.os.Bundle;
++import android.view.Window;
++import android.view.WindowManager;
+ 
+ import androidx.activity.EdgeToEdge;
+ import androidx.appcompat.app.AppCompatActivity;
+@@ -14,6 +16,9 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         EdgeToEdge.enable(this);
++        Window w=getWindow();
++        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
++                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+         setContentView(R.layout.activity_main);
+         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
