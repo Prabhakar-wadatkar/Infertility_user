@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
-            android:text="some days my energy is through the roof, others I'm a total couch potato. Wonder why?"
+            android:text="@string/some_days_my_energy_is_through_the_roof_others_i_m_a_total_couch_potato_wonder_why"
             android:textSize="14sp"
             android:fontFamily="@font/amaranth"
             android:background="#80000000"
