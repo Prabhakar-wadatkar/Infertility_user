@@ -2,6 +2,8 @@ package com.example.infertility.ProfileSetupModule;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,11 @@ public class ProfileSetupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Enable full-screen layout
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         try {
             setContentView(R.layout.activity_profile_setup);
             Log.d(TAG, "ProfileSetupActivity displayed successfully");

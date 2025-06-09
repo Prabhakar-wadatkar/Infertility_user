@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
         FrameLayout container_for_login_screen = findViewById(R.id.container_for_login_screen);
