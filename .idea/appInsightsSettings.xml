@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.infertility" />
-                  <option name="mobileSdkAppId" value="1:505389666821:android:9850216990aeee75df426c" />
-                  <option name="projectId" value="infertility-31b1c" />
-                  <option name="projectNumber" value="505389666821" />
+                  <option name="mobileSdkAppId" value="1:10108946427:android:ccf710f30438e614e1ad5e" />
+                  <option name="projectId" value="infertility-43f45" />
+                  <option name="projectNumber" value="10108946427" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

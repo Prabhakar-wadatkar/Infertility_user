@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class SignInWithPhoneNumber extends Fragment {
     private String mParam2;
     private FirebaseAuth mAuth;
     private String verificationId;
+    private ProgressBar loadingSpinner;
 
     public SignInWithPhoneNumber() {
     }
@@ -49,12 +51,16 @@ public class SignInWithPhoneNumber extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mAuth = FirebaseAuth.getInstance();
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class SignInWithPhoneNumber extends Fragment {
         // Phone number input
         TextInputEditText phoneInput = rootView.findViewById(R.id.phoneInput);
         MaterialButton btnNext = rootView.findViewById(R.id.btnNext);
+        loadingSpinner = rootView.findViewById(R.id.loadingSpinner);
 
         btnNext.setOnClickListener(v -> {
             String phoneNumber = phoneInput.getText() != null ? phoneInput.getText().toString().trim() : "";
@@ -78,6 +85,7 @@ public class SignInWithPhoneNumber extends Fragment {
                 phoneNumber = "+91" + phoneNumber;
             }
             btnNext.setEnabled(false); // Disable button during request
+            loadingSpinner.setVisibility(View.VISIBLE); // Show spinner
             sendVerificationCode(phoneNumber);
         });
 
@@ -92,11 +100,13 @@ public class SignInWithPhoneNumber extends Fragment {
                 .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+                        loadingSpinner.setVisibility(View.GONE); // Hide spinner
                         signInWithPhoneAuthCredential(credential);
                     }
 
                     @Override
                     public void onVerificationFailed(@NonNull FirebaseException e) {
+                        loadingSpinner.setVisibility(View.GONE); // Hide spinner
                         String errorMessage;
                         if (e instanceof FirebaseTooManyRequestsException) {
                             errorMessage = "Too many requests. Please try again later or use a different device/phone number.";
@@ -109,6 +119,7 @@ public class SignInWithPhoneNumber extends Fragment {
 
                     @Override
                     public void onCodeSent(@NonNull String verId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                        loadingSpinner.setVisibility(View.GONE); // Hide spinner
                         verificationId = verId;
                         Bundle bundle = new Bundle();
                         bundle.putString("verificationId", verificationId);
