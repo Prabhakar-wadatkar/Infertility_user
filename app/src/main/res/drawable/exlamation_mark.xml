@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Outer Circle -->
+    <path
+        android:strokeColor="#137c3f"
+        android:strokeWidth="10"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M50,10
+                          A40,40 0 1,1 49.9,10" />
+
+    <!-- Exclamation mark vertical line -->
+    <path
+        android:fillColor="#137c3f"
+        android:pathData="M47,25 h6 v30 h-6 z" />
+
+    <!-- Exclamation mark dot -->
+    <path
+        android:fillColor="#137c3f"
+        android:pathData="M50,67
+                          a4,4 0 1,0 0.1,0" />
+</vector>

@@ -7,22 +7,25 @@
         android:icon="@drawable/home"
         app:tint="?attr/colorOnSecondary"/>
 
-    <item android:id="@+id/shop"
-        android:title="Shop"
-        android:icon="@drawable/discount"
+    <item android:id="@+id/accountSettings"
+        android:title="You"
+        android:icon="@drawable/user"
         app:tint="?attr/colorOnSecondary"/>
 
-    <item android:id="@+id/fab"
-        android:title=""
-        android:enabled="false"
-        />
+
     <item android:id="@+id/cart"
         android:title="Cart"
         android:icon="@drawable/shopping_cart"
         app:tint="?attr/colorOnSecondary"/>
 
     <item android:id="@+id/diet"
-        android:title="Diet"
-        android:icon="@drawable/salad"
+        android:title="Health Checkup"
+        android:icon="@drawable/heart"
         app:tint="?attr/colorOnSecondary"/>
+
+    <item android:id="@+id/feeling"
+        android:title="I'm Feeling"
+        android:icon="@drawable/smile"
+        app:tint="?attr/colorOnSecondary"
+        />
 </menu>
