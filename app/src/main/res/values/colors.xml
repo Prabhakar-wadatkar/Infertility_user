@@ -54,4 +54,7 @@
     <color name="color_surface_container_light">#F8F9FA</color>
     <color name="color_surface_container_dark">#1B1B1B</color>
 
+
+    <color name="loading_spinner_color">#4CAF50</color>
+
 </resources>

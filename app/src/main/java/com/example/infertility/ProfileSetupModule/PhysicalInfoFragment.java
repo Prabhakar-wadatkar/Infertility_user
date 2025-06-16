@@ -1,6 +1,8 @@
 package com.example.infertility.ProfileSetupModule;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -32,11 +34,15 @@ import java.util.Map;
 public class PhysicalInfoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String PREF_NAME = "UserPrefs";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+    private static final String KEY_USER_ID = "userId";
 
     private String mParam1;
     private String mParam2;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private SharedPreferences sharedPreferences;
     private ArrayList<String> selectedOptionsForAboutMe = new ArrayList<>();
     private String selectedBodyShape;
     private String selectedFaceShape;
@@ -63,6 +69,7 @@ public class PhysicalInfoFragment extends Fragment {
         }
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        sharedPreferences = requireActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -193,6 +200,12 @@ public class PhysicalInfoFragment extends Fragment {
 
         mDatabase.child("users").child(user.getUid()).child("physical_info").setValue(physicalInfo)
                 .addOnSuccessListener(aVoid -> {
+                    // Save user ID and login status to SharedPreferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                    editor.putString(KEY_USER_ID, user.getUid());
+                    editor.apply();
+
                     Toast.makeText(getContext(), "Physical info saved successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getContext(), MainActivity.class));
                     getActivity().finish();

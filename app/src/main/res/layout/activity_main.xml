@@ -8,12 +8,11 @@
     tools:context=".MainModule.MainActivity">
 
     <FrameLayout
+        android:id="@+id/container_for_home_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container_for_home_screen"
         android:clipToPadding="false"
-        android:paddingBottom="68dp"
-        />
+        android:paddingBottom="68dp" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"

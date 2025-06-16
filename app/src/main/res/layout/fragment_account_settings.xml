@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserAccountSettingsModule.AccountSettingsFragment">
@@ -17,52 +17,119 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:src="@drawable/user_image" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- Shimmer Skeleton Layout -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:layout_marginStart="4dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/amaranth_bold"
-                android:gravity="center"
-                android:text="Sharmishtha"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="20sp" />
+            android:visibility="visible"
+            app:shimmer_duration="1000">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/amaranth"
-                android:gravity="center"
-                android:text="Joined Dec 28, 2020"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Skeleton for Profile Image -->
+                <View
+                    android:id="@+id/skeleton_profile_image"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:background="@drawable/skeleton_circle_background" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:layout_marginStart="4dp">
+
+                    <!-- Skeleton for Name -->
+                    <View
+                        android:id="@+id/skeleton_name"
+                        android:layout_width="160dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/skeleton_background" />
+
+                    <!-- Skeleton for Joined Date -->
+                    <View
+                        android:id="@+id/skeleton_joined_date"
+                        android:layout_width="120dp"
+                        android:layout_height="14dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/skeleton_background" />
+                </LinearLayout>
+
+                <!-- Skeleton for Edit Button -->
+                <View
+                    android:id="@+id/skeleton_edit_button"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/skeleton_background" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <!-- Actual Content Layout -->
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:src="@drawable/user_image" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginStart="4dp">
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amaranth_bold"
+                    android:gravity="center"
+                    android:text="Name: Not provided"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewJoinedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amaranth"
+                    android:gravity="center"
+                    android:text="Joined: Not provided"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/edit_btn"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_margin="4dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:contentDescription="@string/edit_profile"
+                android:focusable="true"
+                android:padding="4dp"
+                android:src="@drawable/edit"
+                app:tint="?attr/colorOnSurface" />
         </LinearLayout>
-
-
-        <ImageView
-            android:id="@+id/back_btn"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_margin="4dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:contentDescription="@string/back_button"
-            android:focusable="true"
-            android:padding="4dp"
-            android:src="@drawable/edit"
-            app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,34 +143,29 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            app:tabMode="fixed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabMode="fixed">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ACCOUNT"/>
+                android:text="ACCOUNT" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SUBSCRIPTION"/>
+                android:text="SUBSCRIPTION" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CONSULTATION"/>
-
+                android:text="CONSULTATION" />
         </com.google.android.material.tabs.TabLayout>
-
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
+            android:layout_height="match_parent" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
