@@ -124,5 +124,11 @@
         <item name="android:layout_marginEnd">4dp</item>
         <item name="android:padding">6dp</item>
     </style>
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/amaranth</item>
+        <item name="android:textSize">14sp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
 
 </resources>

@@ -1,6 +1,8 @@
 package com.example.infertility.ProfileSetupModule;
 
 import android.app.DatePickerDialog;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -8,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.infertility.R;
 import com.example.infertility.Utility;
 import com.google.android.material.button.MaterialButton;
@@ -20,6 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,13 +36,20 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PersonalInfoFragment extends Fragment {
     private TextInputEditText nameInput, phoneInput, emailInput, passwordInput, confirmPasswordInput;
     private androidx.appcompat.widget.AppCompatTextView txtDay, txtMonth, txtYear;
-    private CardView cardViewBirthDayDate;
+    private CardView cardViewBirthDayDate, cardViewEditImage;
+    private CircleImageView profileImageView;
     private Calendar calendar;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private StorageReference mStorage;
+    private Uri imageUri;
+    private ActivityResultLauncher<String> requestPermissionLauncher;
+    private ActivityResultLauncher<String> pickImageLauncher;
 
     public PersonalInfoFragment() {
         // Required empty public constructor
@@ -46,6 +62,7 @@ public class PersonalInfoFragment extends Fragment {
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         // Initialize views
         nameInput = rootView.findViewById(R.id.nameInput);
@@ -57,6 +74,8 @@ public class PersonalInfoFragment extends Fragment {
         txtMonth = rootView.findViewById(R.id.txtMonth);
         txtYear = rootView.findViewById(R.id.txtYear);
         cardViewBirthDayDate = rootView.findViewById(R.id.cardViewBirthdayDate);
+        cardViewEditImage = rootView.findViewById(R.id.cardViewEditImage);
+        profileImageView = rootView.findViewById(R.id.profile_image);
         MaterialButton btnSaveChanges = rootView.findViewById(R.id.btnSaveChanges);
 
         // Set current date
@@ -75,6 +94,27 @@ public class PersonalInfoFragment extends Fragment {
             phoneInput.setEnabled(false); // Disable editing verified phone number
         }
 
+        // Initialize permission and image picker launchers
+        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                launchImagePicker();
+            } else {
+                Toast.makeText(requireContext(), "Permission denied to access images", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        pickImageLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            if (uri != null) {
+                imageUri = uri;
+                Glide.with(this).load(imageUri).into(profileImageView);
+            } else {
+                Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Edit image click
+        cardViewEditImage.setOnClickListener(v -> checkStoragePermission());
+
         // Date picker
         cardViewBirthDayDate.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
@@ -91,6 +131,22 @@ public class PersonalInfoFragment extends Fragment {
         btnSaveChanges.setOnClickListener(v -> saveUserData());
 
         return rootView;
+    }
+
+    private void checkStoragePermission() {
+        String permission = android.os.Build.VERSION.SDK_INT >= 33 ?
+                android.Manifest.permission.READ_MEDIA_IMAGES :
+                android.Manifest.permission.READ_EXTERNAL_STORAGE;
+
+        if (ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED) {
+            launchImagePicker();
+        } else {
+            requestPermissionLauncher.launch(permission);
+        }
+    }
+
+    private void launchImagePicker() {
+        pickImageLauncher.launch("image/*");
     }
 
     private void saveUserData() {
@@ -136,22 +192,34 @@ public class PersonalInfoFragment extends Fragment {
         userData.put("email", email);
         userData.put("password", password); // Storing password (not recommended)
         userData.put("birthday", birthday);
+        userData.put("joinedDate", ServerValue.TIMESTAMP);
 
-        mDatabase.child("users").child(user.getUid()).setValue(userData)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(requireContext(), "Profile saved successfully", Toast.LENGTH_SHORT).show();
-
-                    // Optional: Update Firebase Authentication password (recommended)
-                    /*
-                    user.updatePassword(password)
-                            .addOnSuccessListener(aVoid1 -> {
-                                Toast.makeText(requireContext(), "Password updated in Firebase Auth", Toast.LENGTH_SHORT).show();
+        // Handle image upload if selected
+        if (imageUri != null) {
+            StorageReference imageRef = mStorage.child("profile_images").child(user.getUid() + ".jpg");
+            imageRef.putFile(imageUri)
+                    .addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl()
+                            .addOnSuccessListener(uri -> {
+                                userData.put("profileImageUrl", uri.toString());
+                                saveUserDataToDatabase(userData, user.getUid());
                             })
                             .addOnFailureListener(e -> {
-                                Toast.makeText(requireContext(), "Failed to update password: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                            });
-                    */
+                                Toast.makeText(requireContext(), "Failed to get image URL: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                saveUserDataToDatabase(userData, user.getUid()); // Proceed without image
+                            }))
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(requireContext(), "Image upload failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        saveUserDataToDatabase(userData, user.getUid()); // Proceed without image
+                    });
+        } else {
+            saveUserDataToDatabase(userData, user.getUid());
+        }
+    }
 
+    private void saveUserDataToDatabase(Map<String, Object> userData, String userId) {
+        mDatabase.child("users").child(userId).setValue(userData)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(requireContext(), "Profile saved successfully", Toast.LENGTH_SHORT).show();
                     // Navigate to PhysicalInfoFragment
                     Utility.replaceFragment(getParentFragmentManager(), R.id.container_for_profile_screen, new PhysicalInfoFragment(), true);
                 })

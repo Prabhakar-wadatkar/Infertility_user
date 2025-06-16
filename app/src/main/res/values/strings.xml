@@ -311,5 +311,10 @@
     <string name="food">Food</string>
     <string name="peanuts_hives_swelling">Peanuts - Hives, Swelling</string>
     <string name="avoid_all_peanut_products">Avoid all peanut products.</string>
+    <string name="logout_confirmation_title">Log Out</string>
+    <string name="logout_confirmation_message">Are you sure you want to log out? Your session data will be cleared.</string>
+    <string name="logout">Log Out</string>
+
+
 
 </resources>
